@@ -1,0 +1,108 @@
+VERSION ""
+
+
+NS_ :
+    NS_DESC_
+    CM_
+    BA_DEF_
+    BA_
+    VAL_
+    CAT_DEF_
+    CAT_
+    FILTER
+    BA_DEF_DEF_
+    EV_DATA_
+    ENVVAR_DATA_
+    SGTYPE_
+    SGTYPE_VAL_
+    BA_DEF_SGTYPE_
+    BA_SGTYPE_
+    SIG_TYPE_REF_
+    VAL_TABLE_
+    SIG_GROUP_
+    SIG_VALTYPE_
+    SIGTYPE_VALTYPE_
+    BO_TX_BU_
+    BA_DEF_REL_
+    BA_REL_
+    BA_DEF_DEF_REL_
+    BU_SG_REL_
+    BU_EV_REL_
+    BU_BO_REL_
+    SG_MUL_VAL_
+
+BS_: 
+BU_: Link_ECU 
+BO_ 1000 Generic_Dash: 8 Link_ECU
+   SG_ Frame_ID M : 0|8@1+ (1,0) [0|20] "" Link_ECU
+   SG_ Engine_Speed m0 : 16|16@1+ (1,0) [0|20000] "RPM" Link_ECU
+   SG_ BAP m1 : 16|16@1+ (0.1,0) [0|200] "kpa" Link_ECU
+   SG_ MAP m0 : 32|16@1+ (1,0) [0|700] "Kpa" Link_ECU
+   SG_ MGP m0 : 48|16@1+ (1,-100) [-100|700] "Kpa" Link_ECU
+   SG_ TPS m1 : 32|16@1+ (0.1,0) [0|100] "%" Link_ECU
+   SG_ Injector_DC m1 : 48|16@1+ (0.1,0) [0|100] "%" Link_ECU
+   SG_ Injector_DC_Sec m2 : 16|16@1+ (0.1,0) [0|100] "%" Link_ECU
+   SG_ Injector_PW_Actual m2 : 32|16@1+ (0.001,0) [0|65] "mS" Link_ECU
+   SG_ ECT m2 : 48|16@1+ (1,-50) [-50|200] "°C" Link_ECU
+   SG_ IAT m3 : 16|16@1+ (1,-50) [-50|200] "°C" Link_ECU
+   SG_ Batt_Volts m3 : 32|16@1+ (0.01,0) [0|25] "V" Link_ECU
+   SG_ MAF m3 : 48|16@1+ (0.1,0) [0|6500] "" Link_ECU
+   SG_ Gear_Position m4 : 16|16@1+ (1,0) [0|15] "" Link_ECU
+   SG_ Injector_Timing m4 : 32|16@1+ (1,0) [0|720] "°" Link_ECU
+   SG_ Ignition_Timing m4 : 48|16@1+ (0.1,-100) [-100|100] "°" Link_ECU
+   SG_ Cam_Pos_Inlet_Bank_1 m5 : 16|16@1+ (0.1,0) [0|60] "°" Link_ECU
+   SG_ Cam_Pos_Inlet_Bank_2 m5 : 32|16@1+ (0.1,0) [0|60] "°" Link_ECU
+   SG_ Cam_Pos_Exhaust_Bank_1 m5 : 48|16@1+ (-0.1,0) [-60|0] "°" Link_ECU
+   SG_ Cam_Pos_Exhaust_Bank_2 m6 : 16|16@1+ (-0.1,0) [-60|0] "°" Link_ECU
+   SG_ Lambda_1 m6 : 32|16@1+ (0.001,0) [0|10] "Lambda" Link_ECU
+   SG_ Lambda_2 m6 : 48|16@1+ (0.001,0) [0|10] "Lambda" Link_ECU
+   SG_ Trig_1_Error_Counter m7 : 16|16@1+ (1,0) [0|255] "" Link_ECU
+   SG_ Fault_codes m7 : 32|16@1+ (1,0) [0|255] "" Link_ECU
+   SG_ Fuel_Pressure m7 : 48|16@1+ (1,0) [0|6550] "Kpa" Link_ECU
+   SG_ Oil_Temp m8 : 16|16@1+ (1,-50) [-50|205] "°C" Link_ECU
+   SG_ Oil_Pressure m8 : 32|16@1+ (1,0) [0|6550] "Kpa" Link_ECU
+   SG_ LF_Wheel_Speed m8 : 48|16@1+ (0.1,0) [0|1000] "Kmh" Link_ECU
+   SG_ LR_Wheel_Speed m9 : 16|16@1+ (0.1,0) [0|1000] "" Link_ECU
+   SG_ RF_Wheel_Speed m9 : 32|16@1+ (0.1,0) [0|1000] "Kmh" Link_ECU
+   SG_ RR_Wheel_Speed m9 : 48|16@1+ (0.1,0) [0|1000] "Kmh" Link_ECU
+   SG_ Knock_Level_1 m10 : 16|16@1+ (5,0) [0|1000] "" Link_ECU
+   SG_ Knock_Level_2 m10 : 32|16@1+ (5,0) [0|1000] "" Link_ECU
+   SG_ Knock_Level_3 m10 : 48|16@1+ (5,0) [0|1000] "" Link_ECU
+   SG_ Knock_Level_4 m11 : 16|16@1+ (5,0) [0|1000] "" Link_ECU
+   SG_ Knock_Level_5 m11 : 32|16@1+ (5,0) [0|1000] "" Link_ECU
+   SG_ Knock_Level_6 m11 : 48|16@1+ (5,0) [0|1000] "" Link_ECU
+   SG_ Knock_Level_7 m12 : 16|16@1+ (5,0) [0|1000] "" Link_ECU
+   SG_ Knock_Level_8 m12 : 32|16@1+ (5,0) [0|1000] "" Link_ECU
+   SG_ RPM_Limit m12 : 48|1@1+ (1,0) [0|1] "" Link_ECU
+   SG_ MAP_Limit m12 : 49|1@1+ (1,0) [0|1] "" Link_ECU
+   SG_ Speed_Limit m12 : 50|1@1+ (1,0) [0|1] "" Link_ECU
+   SG_ Max_Ignition_Flag m12 : 51|1@1+ (1,0) [0|1] "" Link_ECU
+   SG_ Antilag_Ign_Cut m12 : 52|1@1+ (1,0) [0|1] "" Link_ECU
+   SG_ High_Batt_Voltage_Limit m12 : 53|1@1+ (1,0) [0|1] "" Link_ECU
+   SG_ Overrun_Flag m12 : 54|1@1+ (1,0) [0|1] "" Link_ECU
+   SG_ Traction_Limit m12 : 55|1@1+ (1,0) [0|1] "" Link_ECU
+   SG_ Low_Batt_Voltage_Flag m12 : 56|1@1+ (1,0) [0|1] "" Link_ECU
+   SG_ Launch_Limit m12 : 57|1@1+ (1,0) [0|1] "" Link_ECU
+   SG_ GP_RPM_Limit_1 m12 : 59|1@1+ (1,0) [0|1] "" Link_ECU
+   SG_ Rotary_Oil_Pump_Limit m12 : 60|1@1+ (1,0) [0|1] "" Link_ECU
+   SG_ GP_RPM_Limit_2 m12 : 61|1@1+ (1,0) [0|1] "" Link_ECU
+   SG_ EThrottle_Limit m12 : 62|1@1+ (1,0) [0|1] "" Link_ECU
+   SG_ Cyclic_Idle_Active m12 : 63|1@1+ (1,0) [0|1] "" Link_ECU
+   SG_ APS_Main m13 : 16|16@1+ (0.1,0) [0|100] "%" Link_ECU
+   SG_ Ethanol_Content m13 : 32|16@1+ (1,0) [0|100] "%" Link_ECU
+   SG_ Antilag_Status m13 : 53|3@1+ (1,0) [0|6] "" Link_ECU
+   SG_ Launch_Control_Status m13 : 51|2@1+ (1,0) [0|2] "" Link_ECU
+   SG_ Traction_Status m13 : 48|3@1+ (1,0) [0|2] "" Link_ECU
+   SG_ Cruis_Control_Status m13 : 60|4@1+ (1,0) [0|2] "" Link_ECU
+
+BA_DEF_ BO_ "GenMsgBackgroundColor" STRING ;
+BA_DEF_ BO_ "GenMsgForegroundColor" STRING ;
+BA_DEF_ BO_ "isj1939dbc" INT 0 0;
+BA_DEF_DEF_ "GenMsgBackgroundColor" "#ffffff";
+BA_DEF_DEF_ "GenMsgForegroundColor" "#000000";
+BA_DEF_DEF_ "isj1939dbc" 0;
+VAL_ 1000 Gear_Position 0 "0" 1 "1" 2 "2" 3 "3" 4 "4" 5 "5" 6 "6" 7 "7" 8 "8" 9 "P" 10 "R" 11 "N" 12 "D" 13 "H" 14 "L" 15 "-0";
+VAL_ 1000 Antilag_Status 0 "Off" 1 "Armed:_AL_Active" 2 "Off:_RPM<500" 3 "Sys_Armed:_Cyclic_off" 4 "Armed:_Cyclic_Active" 5 "Cyclic_Cooldown_Active" 6 "Dis-armed:_Cyclic_Active";
+VAL_ 1000 Launch_Control_Status 0 "Off" 1 "Active" 2 "Inactive";
+VAL_ 1000 Traction_Status 0 "Off" 1 "Off:_RPM_Lockout" 2 "Off:_TPS_Lockout" 3 "Off:_Speed_Lockout" 4 "Ready" 5 "Active" 6 "Disabled" 7 "Off:_Torque_Module";
+VAL_ 1000 Cruis_Control_Status 0 "Off" 1 "Enabled" 2 "Active" 3 "Startup_Lockout" 4 "Min_RPM" 5 "Max_RPM" 6 "CAN_Error";
