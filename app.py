@@ -63,14 +63,12 @@ class LiveData:
     fuel_kpa:  float | None = None
     lambda1:   float | None = None
     iat_c:     float | None = None
+    ect_c:     float | None = None
     tps:       float | None = None
     batt_v:    float | None = None
     map_kpa:   float | None = None
-    spark:     float | None = None
+    ignition_timing: float | None = None
     ethanol:   float | None = None
-    duty:      float | None = None
-    afr:       float | None = None
-    knock:     float | None = None
 
     peak_rpm:   float | None = None
     peak_boost: float | None = None
@@ -151,14 +149,12 @@ class CanReader(threading.Thread):
                         if "Fuel_Pressure"   in d: self.data.fuel_kpa = d["Fuel_Pressure"]
                         if "Lambda_1"        in d: self.data.lambda1  = d["Lambda_1"]
                         if "IAT"             in d: self.data.iat_c    = d["IAT"]
+                        if "ECT"             in d: self.data.ect_c    = d["ECT"]
                         if "TPS"             in d: self.data.tps      = d["TPS"]
                         if "Batt_Volts"      in d: self.data.batt_v   = d["Batt_Volts"]
                         if "MAP"             in d: self.data.map_kpa  = d["MAP"]
-                        if "Ignition_Angle"  in d: self.data.spark    = d["Ignition_Angle"]
+                        if "Ignition_Timing" in d: self.data.ignition_timing = d["Ignition_Timing"]
                         if "Ethanol_Content" in d: self.data.ethanol  = d["Ethanol_Content"]
-                        if "Inj_Duty_Cycle"  in d: self.data.duty     = d["Inj_Duty_Cycle"]
-                        if "AFR"             in d: self.data.afr      = d["AFR"]
-                        if "Knock_Level"     in d: self.data.knock    = d["Knock_Level"]
 
                     self.data.update_peaks()
 
@@ -315,16 +311,18 @@ def draw_data_page(surf, w, h, data: LiveData, med_font, small_font):
     surf.fill(BLACK)
 
     with data.lock:
+        oil_psi = None if data.oil_kpa is None else data.oil_kpa * KPA_TO_PSI
+        fuel_psi = None if data.fuel_kpa is None else data.fuel_kpa * KPA_TO_PSI
         rows = [
             ("Lambda",   fmt(data.lambda1, 3), "λ"),
-            ("Spark",    fmt(data.spark, 1),   "°"),
+            ("Ignition Timing", fmt(data.ignition_timing, 1), "°"),
             ("IAT",      fmt(data.iat_c, 1),   "°C"),
             ("TPS",      fmt(data.tps, 1),     "%"),
             ("MAP",      fmt(data.map_kpa, 1), "kPa"),
             ("Ethanol",  fmt(data.ethanol, 1), "%"),
-            ("Duty Cyc", fmt(data.duty, 1),    "%"),
-            ("AFR",      fmt(data.afr, 2),     ""),
-            ("Knock",    fmt(data.knock, 1),   "%"),
+            ("Coolant Temp", fmt(data.ect_c, 1), "°C"),
+            ("Oil Pressure", fmt(oil_psi, 1), "psi"),
+            ("Fuel Pressure", fmt(fuel_psi, 1), "psi"),
             ("Battery",  fmt(data.batt_v, 2),  "V"),
         ]
 
