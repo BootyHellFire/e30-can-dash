@@ -274,7 +274,6 @@ def draw_clock_page(surf, w, h, big_font, small_font):
     hand(sec*6.0,    radius*0.88, 2, RED)
     pygame.draw.circle(surf, RED, (cx, cy), 6)
 
-    draw_text(surf, small_font, "Swipe left/right", cx, h - 26, center=True, color=GRAY)
 
 # ===== Page 1 — Main Gauges =====
 def draw_gauges_page(surf, w, h, data: LiveData, big_font, med_font, small_font):
@@ -352,7 +351,6 @@ def draw_data_page(surf, w, h, data: LiveData, med_font, small_font):
         draw_text(surf, small_font, unit,  x + pad_x + 50, circ_cy + 6,  color=GRAY)
 
     pygame.draw.line(surf, DGRAY, (col_w, 20), (col_w, h - 20), 1)
-    draw_text(surf, small_font, "Swipe left/right", w//2, h - 22, center=True, color=GRAY)
 
 def has_data(data: LiveData) -> bool:
     with data.lock:
@@ -377,6 +375,25 @@ def main():
     data   = LiveData()
     reader = CanReader(data)
     reader.start()
+
+    # Fade-in: start black, reveal clock page over ~1 second
+    screen.fill(BLACK)
+    pygame.display.flip()
+    draw_clock_page(base, w, h, big_font, small_font)
+    overlay = pygame.Surface((w, h))
+    overlay.fill(BLACK)
+    fade_clock = pygame.time.Clock()
+    for alpha in range(255, -1, -9):
+        overlay.set_alpha(alpha)
+        if ROTATE_DEG in (90, 180, 270):
+            rot = pygame.transform.rotate(base, ROTATE_DEG)
+            screen.fill(BLACK)
+            screen.blit(rot, rot.get_rect(center=screen.get_rect().center))
+        else:
+            screen.blit(base, (0, 0))
+        screen.blit(overlay, (0, 0))
+        pygame.display.flip()
+        fade_clock.tick(30)
 
     NUM_PAGES = 3
     page  = 0
